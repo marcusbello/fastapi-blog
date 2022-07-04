@@ -1,6 +1,4 @@
 from typing import Optional
-
-import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -41,5 +39,5 @@ def about():
     return {'data': {1, 2, 3, 4}}
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=3080)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=3080)
