@@ -4,7 +4,7 @@ Blog API written with python (fastapi)
 Features : - 
 
 User register
-USer login
+User login
 JWT token generation and verification
 Full Blog CRUD
 
