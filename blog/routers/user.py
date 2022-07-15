@@ -1,9 +1,9 @@
 from typing import List
-from fastapi import APIRouter, status, HTTPException, Depends
-from .. import database, schemas, models
+from fastapi import APIRouter, status, Depends
+from .. import database, schemas
 from sqlalchemy.orm import Session
-from ..hashing import Hash
 from blog.repository import user
+from ..oauth2 import get_current_user
 
 router = APIRouter(
     prefix="/user",
@@ -13,7 +13,7 @@ get_db = database.get_db
 
 
 @router.get('/', status_code=status.HTTP_200_OK, response_model=List[schemas.ShowUser])
-def all_user(db: Session = Depends(get_db)):
+def all_user(db: Session = Depends(get_db), current_user: schemas.User = Depends(get_current_user)):
     return user.all(db)
 
 
@@ -23,6 +23,6 @@ def create_user(request: schemas.User, db: Session = Depends(get_db)):
 
 
 @router.get('/{id}', response_model=schemas.ShowUser)
-def show_user(id: int, db: Session = Depends(get_db)):
+def show_user(id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(get_current_user)):
     return user.show(id, db)
 
