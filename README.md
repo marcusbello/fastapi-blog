@@ -12,5 +12,5 @@ Full Blog CRUD
 For testing of the blog api, clone and run.
 
 run:
-    uvicorn blog.main:app
+    `uvicorn blog.main:app`
 
